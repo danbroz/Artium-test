@@ -57,6 +57,38 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function formatAuthors(authors) {
+        if (!authors || authors.length === 0) return 'Unknown Authors';
+        
+        if (authors.length === 1) {
+            return authors[0];
+        } else if (authors.length === 2) {
+            return `${authors[0]} & ${authors[1]}`;
+        } else {
+            return `${authors[0]} et al.`;
+        }
+    }
+
+    function formatYear(year) {
+        return year ? `(${year})` : '(n.d.)';
+    }
+
+    function formatAPA(paper) {
+        const authors = formatAuthors(paper.authors);
+        const year = formatYear(paper.year);
+        const title = paper.title.endsWith('.') ? paper.title : `${paper.title}.`;
+        
+        // Create the base citation
+        let citation = `${authors} ${year} ${title}`;
+        
+        // Add DOI if available
+        if (paper.doi) {
+            citation += ` <a href="https://doi.org/${paper.doi}" target="_blank" class="text-primary">DOI: ${paper.doi}</a>`;
+        }
+        
+        return citation;
+    }
+
     // Function to display search results
     function displayResults(papers) {
         if (!papers || papers.length === 0) {
@@ -64,24 +96,30 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const papersHTML = papers.map(paper => `
-            <div class="card paper-card">
+        const papersHTML = papers.map((paper, index) => `
+            <div class="card paper-card mb-4">
                 <div class="card-body">
-                    <h5 class="card-title">
-                        <a href="${paper.url}" class="paper-title" target="_blank" rel="noopener noreferrer">
-                            ${paper.title}
-                        </a>
-                    </h5>
-                    <p class="card-text">${paper.abstract || 'No abstract available'}</p>
-                    <div class="paper-meta">
-                        <div>Authors: ${paper.authors.join(', ')}</div>
-                        <div>Published: ${paper.published_date || 'Unknown'}</div>
-                        <div>Source: ${paper.source}</div>
+                    <h5 class="card-title">${index + 1}. ${formatAPA(paper)}</h5>
+                    
+                    <div class="paper-abstract mb-3">
+                        <strong>Abstract:</strong> ${paper.abstract || 'No abstract available.'}
+                    </div>
+                    
+                    <div class="paper-annotation mb-3">
+                        <strong>Annotation:</strong> This paper explores ${paper.title.toLowerCase().replace(/\.$/, '')}. 
+                        ${paper.abstract ? `The research ${paper.abstract.length > 200 ? 'covers a broad range of topics' : 'focuses on specific aspects'} related to the subject matter.` : ''}
+                        ${paper.citations ? `It has been cited ${paper.citations} times, indicating its ${paper.citations > 100 ? 'significant' : 'moderate'} impact in the field.` : ''}
                     </div>
                 </div>
             </div>
         `).join('');
 
-        resultsContainer.innerHTML = papersHTML;
+        resultsContainer.innerHTML = `
+            <div class="results-header mb-4">
+                <h3>Search Results (${papers.length} papers found)</h3>
+                <p class="text-muted">Results are formatted in APA style with annotations.</p>
+            </div>
+            ${papersHTML}
+        `;
     }
 }); 
