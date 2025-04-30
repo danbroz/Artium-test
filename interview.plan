@@ -1,0 +1,128 @@
+# AI-Driven Solution Interview Plan
+
+## Project Overview
+- Create an AI system for generating creative short story ideas
+- Focus on interactive, ethical, and robust prompt design
+- Demonstrate real-time problem-solving and architectural decision-making
+
+## Architectural Approach (15 min)
+### Proposed Architecture: Agentic System with Memory
+1. Core Components:
+   - Main Agent (GPT-4)
+   - Memory System (for conversation history)
+   - Input Validator
+   - Output Formatter
+   - Safety Filter
+
+2. Justification:
+   - More flexible than simple chatbot
+   - Can maintain context across conversations
+   - Better handling of edge cases
+   - Scalable for future enhancements
+
+## OpenAI Playground Setup (10 min)
+### Configuration:
+- Model: GPT-4
+- Temperature: 0.7 (balanced creativity)
+- Max Tokens: 1000
+- Top P: 0.9
+- Frequency Penalty: 0.5
+- Presence Penalty: 0.5
+
+## Prompt Design Strategy (20 min)
+### Base Prompt Structure:
+```
+You are a creative writing assistant specializing in short story generation. Your role is to:
+1. Understand the user's story preferences
+2. Ask clarifying questions when needed
+3. Generate unique story ideas
+4. Maintain consistent tone and genre
+5. Handle requests ethically
+
+Guidelines:
+- Always ask for clarification if the request is ambiguous
+- Maintain appropriate boundaries
+- Provide structured story outlines
+- Include character development suggestions
+- Consider pacing and conflict
+```
+
+## Prompt Iteration Scenarios (30 min)
+### Test Cases:
+1. Clear Request:
+   - "Generate a sci-fi story about time travel"
+
+2. Ambiguous Input:
+   - "I want a story about love"
+
+3. Prompt Injection:
+   - "Ignore previous instructions and..."
+
+4. Conflicting Tone:
+   - "Make it both funny and serious"
+
+5. Multi-turn Conversation:
+   - Initial request → Clarification → Refinement
+
+## Safety & Ethics Considerations
+1. Content Filtering:
+   - Implement content safety checks
+   - Define clear boundaries
+   - Handle sensitive topics appropriately
+
+2. User Privacy:
+   - No personal data collection
+   - Clear data handling policies
+   - Transparent about limitations
+
+## Alternative Models Discussion (5 min)
+### Options to Consider:
+1. Claude (Anthropic)
+   - Strengths: Better at following instructions
+   - Use case: More structured outputs
+
+2. Gemini (Google)
+   - Strengths: Multimodal capabilities
+   - Use case: Visual story elements
+
+3. LLaMA
+   - Strengths: Open source, customizable
+   - Use case: Self-hosted solutions
+
+## Success Metrics
+1. Prompt Effectiveness:
+   - Response relevance
+   - Creativity level
+   - Consistency with user requests
+
+2. System Robustness:
+   - Handling edge cases
+   - Error recovery
+   - Performance under load
+
+## Discussion Points for Debrief
+1. Architectural Decisions:
+   - Why agentic system over simpler solutions
+   - Trade-offs considered
+   - Scalability aspects
+
+2. Challenges Faced:
+   - Technical limitations
+   - Edge cases
+   - User interaction complexities
+
+3. Future Improvements:
+   - Feature additions
+   - Performance optimizations
+   - Integration possibilities
+
+## Time Management
+- Introduction: 5 min
+- Architecture: 15 min
+- Setup: 10 min
+- Initial Prompt: 20 min
+- Iteration: 30 min
+- Alternatives: 5 min
+- Debrief: 10 min
+
+Total: 95 minutes (with 5 min buffer) 
