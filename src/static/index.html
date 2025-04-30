@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Paper Search</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+        .search-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .paper-card {
+            margin-bottom: 1.5rem;
+            transition: transform 0.2s;
+        }
+        .paper-card:hover {
+            transform: translateY(-5px);
+        }
+        .paper-title {
+            color: #0d6efd;
+            text-decoration: none;
+        }
+        .paper-title:hover {
+            text-decoration: underline;
+        }
+        .paper-meta {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .no-results {
+            display: none;
+            text-align: center;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container search-container">
+        <h1 class="text-center mb-4">Academic Paper Search</h1>
+        
+        <div class="row mb-4">
+            <div class="col-md-8">
+                <input type="text" id="searchInput" class="form-control" placeholder="Enter your research topic...">
+            </div>
+            <div class="col-md-2">
+                <select id="maxResults" class="form-select">
+                    <option value="5">5 results</option>
+                    <option value="10" selected>10 results</option>
+                    <option value="20">20 results</option>
+                    <option value="50">50 results</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button id="searchButton" class="btn btn-primary w-100">Search</button>
+            </div>
+        </div>
+
+        <div id="loading" class="loading">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-2">Searching for papers...</p>
+        </div>
+
+        <div id="noResults" class="no-results">
+            <p>No papers found for your search query.</p>
+        </div>
+
+        <div id="results"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html> 
